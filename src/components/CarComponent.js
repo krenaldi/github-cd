@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { START_CAR, STOP_CAR, ADD_CAR } from '../utils/actions';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addCar, startCar, stopCar } from "../utils/carSlice";
 
 export default function CarComponent() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  const [newCarMake, setNewCarMake] = useState('');
-  const [newCarModel, setNewCarModel] = useState('');
-  const [newCarYear, setNewCarYear] = useState('');
+  const [newCarMake, setNewCarMake] = useState("");
+  const [newCarModel, setNewCarModel] = useState("");
+  const [newCarYear, setNewCarYear] = useState("");
 
   return (
     <>
@@ -37,14 +37,21 @@ export default function CarComponent() {
             />
             <button
               onClick={() =>
-                dispatch({
-                  type: ADD_CAR,
-                  payload: {
+                // dispatch({
+                //   type: ADD_CAR,
+                //   payload: {
+                //     make: newCarMake,
+                //     model: newCarModel,
+                //     year: newCarYear,
+                //   },
+                // })
+                dispatch(
+                  addCar({
                     make: newCarMake,
                     model: newCarModel,
                     year: newCarYear,
-                  },
-                })
+                  })
+                )
               }
             >
               Add Car
@@ -54,11 +61,11 @@ export default function CarComponent() {
       </section>
       <section className="car-list">
         {console.log(state)}
-        {state.cars.map((car) => (
+        {state.car.cars?.map((car) => (
           <div key={car.id} id={car.id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {car.model} <br />
-              <span style={{ fontSize: '1rem' }}>
+              <span style={{ fontSize: "1rem" }}>
                 This car was manufactured in {car.year}
               </span>
             </h4>
@@ -69,14 +76,17 @@ export default function CarComponent() {
                 {car.id}
               </code>
             </div>
-            <div className="card-footer bg-light p-2" style={{ fontSize: '1rem' }}>
-              {car.isRunning ? 'Car is running 🏎️' : 'Car is off 💤'}
+            <div
+              className="card-footer bg-light p-2"
+              style={{ fontSize: "1rem" }}
+            >
+              {car.isRunning ? "Car is running 🏎️" : "Car is off 💤"}
               <button
                 id="turnOn"
                 onClick={
                   !car.isRunning
-                    ? () => dispatch({ type: START_CAR, payload: car.id })
-                    : () => dispatch({ type: STOP_CAR, payload: car.id })
+                    ? () => dispatch(startCar(car.id))
+                    : () => dispatch(stopCar(car.id))
                 }
               >
                 Toggle Engine
