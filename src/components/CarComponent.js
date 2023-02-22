@@ -5,6 +5,10 @@ import { START_CAR, STOP_CAR, ADD_CAR } from '../utils/actions';
 export default function CarComponent() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  console.log(state);
+
+  const cars = useSelector((state) => state.cars);
+  console.log("cars", cars);
 
   const [newCarMake, setNewCarMake] = useState('');
   const [newCarModel, setNewCarModel] = useState('');
@@ -53,8 +57,7 @@ export default function CarComponent() {
         </div>
       </section>
       <section className="car-list">
-        {console.log(state)}
-        {state.cars.map((car) => (
+        {cars.map((car) => (
           <div key={car.id} id={car.id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {car.model} <br />
