@@ -5,6 +5,10 @@ import { addCar, startCar, stopCar } from "../utils/carSlice";
 export default function CarComponent() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  console.log(state);
+
+  const { cars } = useSelector((state) => state.car);
+  console.log(cars);
 
   const [newCarMake, setNewCarMake] = useState("");
   const [newCarModel, setNewCarModel] = useState("");
@@ -37,14 +41,6 @@ export default function CarComponent() {
             />
             <button
               onClick={() =>
-                // dispatch({
-                //   type: ADD_CAR,
-                //   payload: {
-                //     make: newCarMake,
-                //     model: newCarModel,
-                //     year: newCarYear,
-                //   },
-                // })
                 dispatch(
                   addCar({
                     make: newCarMake,
@@ -60,8 +56,7 @@ export default function CarComponent() {
         </div>
       </section>
       <section className="car-list">
-        {console.log(state)}
-        {state.car.cars?.map((car) => (
+        {cars?.map((car) => (
           <div key={car.id} id={car.id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {car.model} <br />
