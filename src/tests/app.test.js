@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
-import CarComponent from "../components/CarComponent";
+import App from "../App";
+import { renderWithProviders } from "../utils/test-utils";
 
-test("CarComponent renders", () => {
-  render(<CarComponent />);
+test("App renders", () => {
+  renderWithProviders(<App />);
 });

@@ -4,11 +4,11 @@ import { addCar, startCar, stopCar } from "../utils/carSlice";
 
 export default function CarComponent() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  console.log(state);
+  // const state = useSelector((state) => state);
+  // console.log(state);
 
   const { cars } = useSelector((state) => state.car);
-  console.log(cars);
+  // console.log(cars);
 
   const [newCarMake, setNewCarMake] = useState("");
   const [newCarModel, setNewCarModel] = useState("");

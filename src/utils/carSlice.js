@@ -1,26 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 import createId from "./createId";
 
+export const initialState = {
+  cars: [
+    {
+      id: 1,
+      make: "Honda",
+      model: "Civic",
+      year: "2008",
+      isRunning: false,
+    },
+    {
+      id: 2,
+      make: "Tesla",
+      model: "Y",
+      year: "2021",
+      isRunning: false,
+    },
+  ],
+};
+
 export const carSlice = createSlice({
   name: "car",
-  initialState: {
-    cars: [
-      {
-        id: 1,
-        make: "Honda",
-        model: "Civic",
-        year: "2008",
-        isRunning: false,
-      },
-      {
-        id: 2,
-        make: "Tesla",
-        model: "Y",
-        year: "2021",
-        isRunning: false,
-      },
-    ],
-  },
+  initialState,
   reducers: {
     addCar: (state, action) => {
       const newCarId = createId(state.cars);
@@ -54,8 +56,8 @@ export const carSlice = createSlice({
         ...state,
         cars: carsCopy,
       };
-    }
-  }
+    },
+  },
 });
 
 export const { addCar, startCar, stopCar } = carSlice.actions;

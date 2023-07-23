@@ -1,13 +1,19 @@
 // Creates a Redux store that holds the state of the app. Only one store should exist.
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 // Importing the reducer file that is mostly unchanged
 // import reducers from './reducers';
 // Add Slice Reducers to the Store
-import carReducer from './carSlice'
+import carReducer from './carSlice';
 
-export default configureStore({
-  reducer: {
-    car: carReducer
-  }
+// Create the root reducer separately so we can extract the RootState type
+const rootReducer = combineReducers({
+  car: carReducer,
 });
+
+export const setupStore = (preloadedState) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+};
