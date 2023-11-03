@@ -6,17 +6,24 @@ const initalState = {
   cars: [
     {
       id: 1,
-      make: 'Honda',
-      model: 'Civic',
-      year: '2008',
+      make: "Honda",
+      model: "Civic",
+      year: "2008",
       isRunning: false,
     },
     {
       id: 2,
-      make: 'Tesla',
-      model: 'Y',
-      year: '2021',
+      make: "Tesla",
+      model: "Y",
+      year: "2021",
       isRunning: false,
+    },
+    {
+      id: 3,
+      make: "Ford",
+      model: "Mustang GT",
+      year: "2008",
+      isRunning: true,
     },
   ],
 };
